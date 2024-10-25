@@ -10,13 +10,14 @@ import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens./*? if >1.20.6 >>*/options. OptionsScreen;
 import net.minecraft.client.gui.screens.PauseScreen;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
 public class PauseScreenProcessor extends ScreenProcessor<PauseScreen> {
-    private final Supplier<Button> disconnectButtonSupplier;
+    private final Supplier<@Nullable Button> disconnectButtonSupplier;
 
-    public PauseScreenProcessor(PauseScreen screen, Supplier<Button> disconnectButtonSupplier) {
+    public PauseScreenProcessor(PauseScreen screen, Supplier<@Nullable Button> disconnectButtonSupplier) {
         super(screen);
         this.disconnectButtonSupplier = disconnectButtonSupplier;
     }
@@ -52,13 +53,17 @@ public class PauseScreenProcessor extends ScreenProcessor<PauseScreen> {
                         ButtonGuidePredicate.always()
                 );
             });
-            ButtonGuideApi.addGuideToButton(
-                    disconnectButtonSupplier.get(),
-                    () -> disconnectButtonSupplier.get().isFocused()
-                            ? ControlifyBindings.GUI_PRESS
-                            : ControlifyBindings.GUI_ABSTRACT_ACTION_2,
-                    ButtonGuidePredicate.always()
-            );
+
+            Button disconnectButton = disconnectButtonSupplier.get();
+            if (disconnectButton != null) {
+                ButtonGuideApi.addGuideToButton(
+                        disconnectButton,
+                        () -> disconnectButton.isFocused()
+                                ? ControlifyBindings.GUI_PRESS
+                                : ControlifyBindings.GUI_ABSTRACT_ACTION_2,
+                        ButtonGuidePredicate.always()
+                );
+            }
         }
     }
 }
