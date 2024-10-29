@@ -1,5 +1,6 @@
 package dev.isxander.controlify.driver.steamdeck;
 
+import dev.isxander.controlify.Controlify;
 import dev.isxander.controlify.controller.ControllerEntity;
 import dev.isxander.controlify.controller.battery.BatteryLevelComponent;
 import dev.isxander.controlify.controller.battery.PowerState;
@@ -203,7 +204,7 @@ public class SteamDeckDriver implements Driver {
     }
 
     public static Optional<SteamDeckDriver> create() {
-        if (triedToLoad)
+        if (triedToLoad || !Controlify.instance().config().globalSettings().useEnhancedSteamDeckDriver)
             return Optional.empty();
 
         triedToLoad = true;

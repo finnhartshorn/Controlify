@@ -5,6 +5,7 @@ import dev.isxander.controlify.api.ControlifyApi;
 import dev.isxander.controlify.config.GlobalSettings;
 import dev.isxander.controlify.controller.ControllerEntity;
 import dev.isxander.controlify.driver.SDL3NativesManager;
+import dev.isxander.controlify.driver.steamdeck.SteamDeckUtil;
 import dev.isxander.controlify.gui.controllers.FormattableStringController;
 import dev.isxander.controlify.reacharound.ReachAroundMode;
 import dev.isxander.controlify.server.ServerPolicies;
@@ -169,6 +170,15 @@ public class GlobalSettingsScreenFactory {
                                                 .build())
                                         .binding(GlobalSettings.DEFAULT.notifyLowBattery, () -> globalSettings.notifyLowBattery, v -> globalSettings.notifyLowBattery = v)
                                         .controller(TickBoxControllerBuilder::create)
+                                        .build())
+                                .optionIf(SteamDeckUtil.IS_STEAM_DECK, Option.<Boolean>createBuilder()
+                                        .name(Component.translatable("controlify.gui.use_enhanced_steam_deck_driver"))
+                                        .description(OptionDescription.createBuilder()
+                                                .text(Component.translatable("controlify.gui.use_enhanced_steam_deck_driver.tooltip"))
+                                                .build())
+                                        .binding(GlobalSettings.DEFAULT.useEnhancedSteamDeckDriver, () -> globalSettings.useEnhancedSteamDeckDriver, v -> globalSettings.useEnhancedSteamDeckDriver = v)
+                                        .controller(TickBoxControllerBuilder::create)
+                                        .flag(OptionFlag.GAME_RESTART)
                                         .build())
                                 .option(ButtonOption.createBuilder()
                                         .name(Component.translatable("controlify.gui.copy_debug_dump"))

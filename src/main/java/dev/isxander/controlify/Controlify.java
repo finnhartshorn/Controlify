@@ -227,7 +227,9 @@ public class Controlify implements ControlifyApi {
         // register events
         PlatformClientUtil.registerClientStopping(client -> this.controllerHIDService().stop());
 
-        doSteamDeckChecks();
+        if (this.config().globalSettings().useEnhancedSteamDeckDriver) {
+            doSteamDeckChecks();
+        }
     }
 
     private void doSteamDeckChecks() {

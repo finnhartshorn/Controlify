@@ -32,6 +32,7 @@ public class GlobalSettings {
     public boolean notifyLowBattery = true;
     public boolean quietMode = false;
     public float ingameButtonGuideScale = 1f;
+    public boolean useEnhancedSteamDeckDriver = true;
 
     public Set<String> seenServers = new HashSet<>();
 
