@@ -174,11 +174,7 @@ dependencies {
     }
 
     // sodium compat
-    modDependency("sodium", { "maven.modrinth:sodium:$it" }) { runtime ->
-        if (runtime) {
-
-        }
-    }
+    modDependency("sodium", { "maven.modrinth:sodium:$it" })
 
     // RSO compat
     modDependency("reesesSodiumOptions", { "maven.modrinth:reeses-sodium-options:$it" })
@@ -321,6 +317,8 @@ publishMods {
     additionalFiles.setFrom(offlineRemapJar.get().archiveFile)
 
     modLoaders.add(loader)
+
+    displayName.set("$versionWithoutMC for $loader $mcVersion")
 
     fun versionList(prop: String) = findProperty(prop)?.toString()
         ?.split(',')
