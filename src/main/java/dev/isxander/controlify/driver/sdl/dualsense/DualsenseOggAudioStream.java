@@ -1,4 +1,4 @@
-package dev.isxander.controlify.driver.sdl;
+package dev.isxander.controlify.driver.sdl.dualsense;
 
 import it.unimi.dsi.fastutil.floats.FloatConsumer;
 import org.jetbrains.annotations.NotNull;

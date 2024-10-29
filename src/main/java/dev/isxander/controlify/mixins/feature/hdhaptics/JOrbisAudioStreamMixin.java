@@ -5,7 +5,7 @@ import org.spongepowered.asm.mixin.Mixin;
 /*? if >1.20.4 {*/
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import dev.isxander.controlify.driver.sdl.DualsenseOggAudioStream;
+import dev.isxander.controlify.driver.sdl.dualsense.DualsenseOggAudioStream;
 import it.unimi.dsi.fastutil.floats.FloatConsumer;
 import net.minecraft.client.sounds.JOrbisAudioStream;
 import org.spongepowered.asm.mixin.Unique;

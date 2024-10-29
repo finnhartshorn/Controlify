@@ -158,7 +158,7 @@ public class SDLControllerManager extends AbstractControllerManager {
                 uid = useSerialForUID(SDL_GetJoystickSerial(ptrJoystick), hid).orElse(uid);
             }
 
-            drivers.add(new SDL3JoystickDriver(ptrJoystick, jid));
+            drivers.add(new SDL3JoystickDriver(ptrJoystick, jid, hidInfo.type()));
         }
 
         String name = drivers.get(0).getDriverName();

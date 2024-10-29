@@ -1,4 +1,4 @@
-package dev.isxander.controlify.driver.sdl;
+package dev.isxander.controlify.driver.sdl.dualsense;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
@@ -82,6 +82,36 @@ public class DS5EffectsState extends Structure {
 
         public TriggerEffect(Pointer p) {
             super(p);
+        }
+
+        public TriggerEffect(byte effectType, byte p0, byte p1, byte p2, byte p3, byte p4, byte p5, byte p6, byte p7, byte p8, byte p9) {
+            this.effectType = effectType;
+            this.p0 = p0;
+            this.p1 = p1;
+            this.p2 = p2;
+            this.p3 = p3;
+            this.p4 = p4;
+            this.p5 = p5;
+            this.p6 = p6;
+            this.p7 = p7;
+            this.p8 = p8;
+            this.p9 = p9;
+        }
+
+        public TriggerEffect(DualsenseTriggerEffects.EffectType effectType, byte[] params) {
+            this.effectType = effectType.value;
+            byte[] dest = new byte[10];
+            System.arraycopy(params, 0, dest, 0, Math.min(params.length, 10));
+            this.p0 = dest[0];
+            this.p1 = dest[1];
+            this.p2 = dest[2];
+            this.p3 = dest[3];
+            this.p4 = dest[4];
+            this.p5 = dest[5];
+            this.p6 = dest[6];
+            this.p7 = dest[7];
+            this.p8 = dest[8];
+            this.p9 = dest[9];
         }
     }
 
