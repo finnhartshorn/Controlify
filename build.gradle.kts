@@ -100,7 +100,11 @@ dependencies {
     optionalProp("deps.mixinExtras") {
         if (isForgeLike) {
             compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:$it")!!)
-            implementation(include("io.github.llamalad7:mixinextras-forge:$it")!!)
+            if (isNeoforge) {
+                implementation(include("io.github.llamalad7:mixinextras-neoforge:$it")!!)
+            } else {
+                implementation(include("io.github.llamalad7:mixinextras-forge:$it")!!)
+            }
         } else {
             include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:$it")!!)!!)
         }
