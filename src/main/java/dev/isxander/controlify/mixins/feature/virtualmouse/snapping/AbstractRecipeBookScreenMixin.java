@@ -28,7 +28,7 @@ public abstract class AbstractRecipeBookScreenMixin<T extends AbstractContainerM
     //? if >=1.21.2 {
     @Shadow @Final private RecipeBookComponent<?> recipeBookComponent;
     //?} else {
-    /*@Shadow(remap = false, aliases = {"getRecipeBookComponent","m_5564_"})
+    /*@Shadow(remap = false, aliases = {"getRecipeBookComponent","m_5564_","method_2659"})
     public abstract RecipeBookComponent getRecipeBookComponent();
     *///?}
 
