@@ -7,4 +7,5 @@ This version has the following targets:
 
 ## Changes
 
-- Fix crashes on neoforge targets due to mixin extras module error
+- Fix startup crash on all targets lower than 1.21.3
+- Fix text hover/click chat offset being a few pixels down
