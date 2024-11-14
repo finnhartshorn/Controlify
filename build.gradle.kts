@@ -32,7 +32,8 @@ val isAlpha = "alpha" in version.toString()
 val isBeta = "beta" in version.toString()
 base.archivesName.set(property("modName").toString())
 
-// mixin stuff
+// Conditionally include the mixins for the mods this target is compatible with
+// Generates a list of mixin file names for processResources to include in the manifests
 val mixins = mapOf(
     "controlify" to true,
     "controlify-compat.iris" to isPropDefined("deps.iris"),
@@ -51,16 +52,21 @@ val accessWidenerName = "controlify.accesswidener"
 loom {
     accessWidenerPath.set(project.file("src/main/resources/$accessWidenerName"))
 
-    if (stonecutter.current.isActive) {
+    if (stonecutter.current.isActive) { // only generate active project run config as the rest would be invalid
         runConfigs.all {
             ideConfigGenerated(true)
+
+            // use a single run directory for all targets (targets are two folders deep from root)
             runDir("../../run")
+
+            // Loom messes with LWJGL version. It's not the one that ships with MC and Sodium doesn't like it
             vmArgs("-Dsodium.checks.issue2561=false")
         }
     }
 
     mixin {
-        useLegacyMixinAp.set(false)
+        // MixinExtras expressions do not support tiny remapper for now.
+        useLegacyMixinAp.set(true)
     }
 
     if (isForge) {
@@ -78,8 +84,6 @@ stonecutter {
         "sodium" to sodiumSemver
     )
 
-    swaps["sodium-package-import"] = if (eval(sodiumSemver, ">=0.6"))
-        "import net.caffeinemc.mods.sodium" else "import me.jellysquid.mods.sodium"
     swaps["sodium-package"] = if (eval(sodiumSemver, ">=0.6"))
         "net.caffeinemc.mods.sodium" else "me.jellysquid.mods.sodium"
 }
