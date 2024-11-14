@@ -108,7 +108,15 @@ public abstract class MinecraftMixin implements InitialScreenRegistryDuck {
         Controlify.instance().inGameInputHandler().ifPresent(ih -> ih.processPlayerLook(getTickDelta()));
     }
 
-    @Inject(method = "close", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/telemetry/ClientTelemetryManager;close()V"))
+    @Inject(
+            method = "close",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/client/telemetry/ClientTelemetryManager;close()V",
+                    remap = true // override the remap false for the inject method itself
+            ),
+            remap = false // close inherits from AutoCloseable which is not remapped
+    )
     private void onMinecraftClose(CallbackInfo ci) {
         Controlify.instance().getControllerManager().ifPresent(ControllerManager::close);
     }

@@ -20,7 +20,7 @@ import java.util.Optional;
 
 import /*$ sodium-package >>*/ net.caffeinemc.mods.sodium .client.gui.widgets.FlatButtonWidget;
 
-@Mixin(FlatButtonWidget.class)
+@Mixin(value = FlatButtonWidget.class, remap = false)
 public class FlatButtonWidgetMixin implements ButtonGuideRenderer<FlatButtonWidget> {
     @Shadow
     private boolean enabled;

@@ -1,5 +1,6 @@
 package dev.isxander.controlify.mixins.feature.hdhaptics;
 
+import dev.isxander.controlify.utils.DummyMixinTarget;
 import org.spongepowered.asm.mixin.Mixin;
 
 /*? if >1.20.4 {*/
@@ -70,7 +71,7 @@ public class JOrbisAudioStreamMixin {
     }
 }
 /*?} else {*/
-/*@Mixin(targets = {})
+/*@Mixin(DummyMixinTarget.class)
 public class JOrbisAudioStreamMixin {
 
 }
