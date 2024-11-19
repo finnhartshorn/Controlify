@@ -20,6 +20,8 @@ public final class PlatformMainUtil {
             new dev.isxander.controlify.platform.main.fabric.FabricPlatformMainImpl();
             //? if neoforge
             /*new dev.isxander.controlify.platform.main.neoforge.NeoforgePlatformMainImpl();*/
+            //? if forge
+            /*new dev.isxander.controlify.platform.main.forge.ForgePlatformMainImpl();*/
 
     public static void registerCommandRegistrationCallback(CommandRegistrationCallbackEvent callback) {
         IMPL.registerCommandRegistrationCallback(callback);

@@ -24,31 +24,43 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MultiPlayerGameModeMixin {
     @Unique private ContinuousRumbleEffect blockBreakRumble = null;
 
-    @Inject(
-            //? if fabric {
-            method = "method_41930",
-            //?} else {
-            /*method = "lambda$startDestroyBlock$1",
-            *///?}
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/ClientLevel;destroyBlockProgress(ILnet/minecraft/core/BlockPos;I)V")
-    )
-    private void onStartBreakingBlock(CallbackInfoReturnable<Packet<?>> cir, @Local(argsOnly = true) BlockState state) {
-        startRumble(state);
-    }
+    // TODO: Fix this for forge
+//    @Inject(
+//            //? if fabric {
+//            /*method = "method_41930",
+//            *///?} else if forge {
+////            method = "method_41930(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;I)Lnet/minecraft/network/protocol/Packet;",
+////            method = "m_233724_(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;I)Lnet/minecraft/network/protocol/Packet;",
+//            //(Ldcb;Lgu;Lha;I)Luo; m_233724_
+//            //?} else {
+//            /*method = "lambda$startDestroyBlock$1(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;I)Lnet/minecraft/network/protocol/Packet;",
+//            remap = false,
+//            *///?}
+//            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/ClientLevel;destroyBlockProgress(ILnet/minecraft/core/BlockPos;I)V")
+//    )
+//    private void onStartBreakingBlock(CallbackInfoReturnable<Packet<?>> cir, @Local(argsOnly = true) BlockState state) {
+//        startRumble(state);
+//    }
 
-    @Inject(
-            //? if fabric {
-            method = "method_41930",
-            //?} else {
-            /*method = "lambda$startDestroyBlock$1",
-            *///?}
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/MultiPlayerGameMode;destroyBlock(Lnet/minecraft/core/BlockPos;)Z")
-    )
-    private void onInstabreakBlockSurvival(CallbackInfoReturnable<Packet<?>> cir, @Local(argsOnly = true) BlockState state) {
-        startRumble(state);
-        // won't stop until 1 tick
-        stopRumble();
-    }
+//    @Inject(
+//            //? if fabric {
+//            /*method = "method_41930",
+//            *///?} else if forge {
+////            method = "method_41930(Lnet.minecraft.world.level.block.state.BlockState;Lnet.minecraft.core.BlockPos,Lnet.minecraft.core.Direction;I)Lnet.minecraft.network.protocol.Packet",
+////            method = "method_41930",
+//            method = "m_233724_(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos/Lnet/minecraft/core/Direction;I)Lnet/minecraft/network/protocol/Packet;",
+//            /*method = "lambda$startDestroyBlock$1",
+//            //?} else {
+//            /*method = "lambda$startDestroyBlock$1",
+//            remap = false,
+//            *///?}
+//            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/MultiPlayerGameMode;destroyBlock(Lnet/minecraft/core/BlockPos;)Z")
+//    )
+//    private void onInstabreakBlockSurvival(CallbackInfoReturnable<Packet<?>> cir, @Local(argsOnly = true) BlockState state) {
+//        startRumble(state);
+//        // won't stop until 1 tick
+//        stopRumble();
+//    }
 
     @Inject(method = "stopDestroyBlock", at = @At("RETURN"))
     private void onStopBreakingBlock(CallbackInfo ci) {

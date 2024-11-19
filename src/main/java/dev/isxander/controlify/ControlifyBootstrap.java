@@ -55,4 +55,31 @@ public class ControlifyBootstrap {
         }
     }
 }
+*///?} elif forge {
+/*import dev.isxander.controlify.gui.screen.ModConfigOpenerScreen;
+import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.loading.FMLEnvironment;
+
+@Mod("controlify")
+public class ControlifyBootstrap {
+
+    public ControlifyBootstrap() {
+        ControlifyServer.getInstance().onInitialize();
+
+        ModLoadingContext.get().registerExtensionPoint(
+                net.minecraftforge.client.ConfigScreenHandler.ConfigScreenFactory.class,
+                () -> new net.minecraftforge.client.ConfigScreenHandler.ConfigScreenFactory(
+                        (client, parent) -> new ModConfigOpenerScreen(parent))
+        );
+
+        if (FMLEnvironment.dist.isClient()) {
+            Controlify.instance().preInitialiseControlify();
+        }
+
+        if (FMLEnvironment.dist.isDedicatedServer()) {
+            ControlifyServer.getInstance().onInitializeServer();
+        }
+    }
+}
 *///?}

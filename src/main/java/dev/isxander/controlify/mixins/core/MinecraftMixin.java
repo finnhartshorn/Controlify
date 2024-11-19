@@ -85,8 +85,11 @@ public abstract class MinecraftMixin implements InitialScreenRegistryDuck {
             Controlify.instance().hideMouse(true, true);
         }
     }
-
+    //? if forge {
+    /*@Inject(method = "setInitialScreen", at = @At("RETURN"))
+    *///?} else {
     @Inject(method = "onGameLoadFinished", at = @At("RETURN"))
+    //?}
     private void initControlifyNow(CallbackInfo ci) {
         try {
             Controlify.instance().initializeControlify();
@@ -108,18 +111,19 @@ public abstract class MinecraftMixin implements InitialScreenRegistryDuck {
         Controlify.instance().inGameInputHandler().ifPresent(ih -> ih.processPlayerLook(getTickDelta()));
     }
 
-    @Inject(
-            method = "close",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/client/telemetry/ClientTelemetryManager;close()V",
-                    remap = true // override the remap false for the inject method itself
-            ),
-            remap = false // close inherits from AutoCloseable which is not remapped
-    )
-    private void onMinecraftClose(CallbackInfo ci) {
-        Controlify.instance().getControllerManager().ifPresent(ControllerManager::close);
-    }
+    // TODO: Fix this for forge
+//    @Inject(
+//            method = "close",
+//            at = @At(
+//                    value = "INVOKE",
+//                    target = "Lnet/minecraft/client/telemetry/ClientTelemetryManager;close()V",
+//                    remap = true // override the remap false for the inject method itself
+//            ),
+//            remap = false // close inherits from AutoCloseable which is not remapped
+//    )
+//    private void onMinecraftClose(CallbackInfo ci) {
+//        Controlify.instance().getControllerManager().ifPresent(ControllerManager::close);
+//    }
 
     @Inject(
             method = "runTick",

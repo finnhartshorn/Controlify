@@ -21,6 +21,8 @@ public final class PlatformClientUtil {
             new dev.isxander.controlify.platform.client.fabric.FabricPlatformClientImpl();
             //? if neoforge
             /*new dev.isxander.controlify.platform.client.neoforge.NeoforgePlatformClientImpl();*/
+            //? if forge
+            /*new dev.isxander.controlify.platform.client.forge.ForgePlatformClientImpl();*/
 
     public static void registerClientTickStarted(TickEvent event) {
         IMPL.registerClientTickStarted(event);

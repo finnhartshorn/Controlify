@@ -21,19 +21,19 @@ public class MouseHandlerMixin implements MouseMinecraftCallNotifier {
     @Unique private boolean calledFromMinecraftSetScreen = false;
 
     // method_22686 is lambda for GLFW mouse click hook - do it outside of the `onPress` method due to fake inputs
-    @Inject(method = "method_22686", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MouseHandler;onPress(JIII)V"))
+    @Inject(method = "method_22686(JIII)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MouseHandler;onPress(JIII)V"))
     private void onMouseClickInput(long window, int button, int action, int modifiers, CallbackInfo ci) {
         onMouse(window);
     }
 
     // method_22689 is lambda for GLFW mouse move hook - do it outside of the `onMove` method due to fake inputs
-    @Inject(method = "method_22689", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MouseHandler;onMove(JDD)V"))
+    @Inject(method = "method_22689(JDD)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MouseHandler;onMove(JDD)V"))
     private void onMouseMoveInput(long window, double x, double y, CallbackInfo ci) {
         onMouse(window);
     }
 
     // method_22687 is lambda for GLFW mouse scroll hook - do it outside of the `onScroll` method due to fake inputs
-    @Inject(method = "method_22687", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MouseHandler;onScroll(JDD)V"))
+    @Inject(method = "method_22687(JDD)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MouseHandler;onScroll(JDD)V"))
     private void onMouseScrollInput(long window, double scrollDeltaX, double scrollDeltaY, CallbackInfo ci) {
         onMouse(window);
     }

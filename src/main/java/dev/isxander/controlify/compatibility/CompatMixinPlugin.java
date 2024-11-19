@@ -15,6 +15,8 @@ public abstract class CompatMixinPlugin implements IMixinConfigPlugin {
         this.compatEnabled = net.fabricmc.loader.api.FabricLoader.getInstance().isModLoaded(this.getModId());
         //?} elif neoforge {
         /*this.compatEnabled = net.neoforged.fml.loading.LoadingModList.get().getModFileById(this.getModId()) != null;
+        *///?} elif forge {
+        /*this.compatEnabled = net.minecraftforge.fml.loading.LoadingModList.get().getModFileById(this.getModId()) != null;
         *///?}
     }
 

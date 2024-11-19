@@ -65,6 +65,7 @@ subprojects {
         }
         maven("https://jitpack.io")
         maven("https://maven.neoforged.net/releases/")
+        maven("https://maven.minecraftforge.net/")
     }
 }
 

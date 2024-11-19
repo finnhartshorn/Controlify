@@ -43,6 +43,7 @@ val mixins = mapOf(
     "controlify-compat.simple-voice-chat" to isPropDefined("deps.simpleVoiceChat"),
     "controlify-platform.fabric" to isFabric,
     "controlify-platform.neoforge" to isNeoforge,
+    "controlify-platform.forge" to isForge,
 )
     .map { (k, v) -> if (v) k else null }
     .filterNotNull()
